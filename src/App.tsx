@@ -12,7 +12,7 @@ import MatRoundButton from "./components/MatRoundButton";
 
 function App() {
   const elmRef = useRef<HTMLDivElement>(null);
-  const loadingProgress = useRef<HTMLDialogElement>(null);
+  // const loadingProgress = useRef<HTMLDialogElement>(null);
 
   const [language, setLanguage] = useState(Language.ENGLISH.code);
   const [year, setYear] = useState(years[0].value);
@@ -22,7 +22,6 @@ function App() {
   const genreApi = useMovieGenres(Language.ENGLISH.code);
 
   useEffect(() => {
-    
     if (elmRef.current) {
       elmRef.current.scroll({ top: 90, left: 0, behavior: "instant" });
     }
@@ -43,13 +42,14 @@ function App() {
     });
   }
 
-  const handleFilterChange = (filterOption) => {
+  const handleFilterChange = (filterOption: any) => {
     setLanguage(filterOption.language);
     setYear(filterOption.year);
     setPage(1);
   };
 
   const handleNextPageClick: MouseEventHandler<HTMLElement> = (e) => {
+    e.stopPropagation();
     const t = movieApi.data?.total_pages ?? 0;
     if (page < t) {
       setPage((p) => p + 1);
@@ -57,6 +57,7 @@ function App() {
   };
 
   const handlePrevPageClick: MouseEventHandler<HTMLElement> = (e) => {
+    e.stopPropagation();
     if (page > 1) {
       setPage((p) => p - 1);
     }

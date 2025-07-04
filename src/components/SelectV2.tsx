@@ -17,7 +17,6 @@ const SelectV2: React.FC<SelectProps> = ({
   title,
   options,
   value,
-  required,
   onChange,
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
