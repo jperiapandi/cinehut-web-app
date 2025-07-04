@@ -20,8 +20,8 @@ export class APIHookState<T> {
     return new APIHookState<T>();
   }
 
-  static getLoadingState<T>(): APIHookState<T> {
-    return new APIHookState<T>("loading");
+  static getLoadingState<T>(prevData?: T): APIHookState<T> {
+    return new APIHookState<T>("loading", "", prevData);
   }
 
   static getSuccessState<T>(responseBody: T): APIHookState<T> {
