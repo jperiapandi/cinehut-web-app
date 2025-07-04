@@ -6,7 +6,7 @@ export interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
-  movie: { poster_path, vote_average, release_date, genres, title, original_title },
+  movie: { poster_path, vote_average, release_date, genres, title },
 }) => {
   const imgSrc = `${
     import.meta.env.VITE_TMDB_IMAGE_BASE_URL

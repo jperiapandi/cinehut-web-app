@@ -1,9 +1,20 @@
-import { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { languages } from "../languages";
 import SelectV2 from "./SelectV2";
 import { years } from "../constants";
 
-export default function Filter({ language, year, page, onChange }) {
+export type FilterProps = {
+  language: string;
+  year: string;
+  page: number;
+  onChange: (d: FilterChangeData) => void;
+};
+
+export type FilterChangeData = {
+  language: string;
+  year: string;
+};
+const Filter: React.FC<FilterProps> = ({ language, year, onChange }) => {
   const [curLang, setCurLang] = useState(language);
   const [curYear, setCurYear] = useState(year);
 
@@ -42,4 +53,6 @@ export default function Filter({ language, year, page, onChange }) {
       />
     </div>
   );
-}
+};
+
+export default Filter;

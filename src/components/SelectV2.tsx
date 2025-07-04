@@ -17,7 +17,6 @@ const SelectV2: React.FC<SelectProps> = ({
   title,
   options,
   value,
-  required,
   onChange,
 }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -32,6 +31,11 @@ const SelectV2: React.FC<SelectProps> = ({
   } else {
     // dialogRef?.current?.close();
   }
+
+  const onMouseLeaveContainer: MouseEventHandler<HTMLDivElement> = (e)=>{
+    e.stopPropagation();
+    setShowOptions(false);
+  };
 
   const handleOptionCLick: MouseEventHandler<HTMLOptionElement> = (e) => {
     e.stopPropagation();
@@ -57,7 +61,7 @@ const SelectV2: React.FC<SelectProps> = ({
   }, []);
   return (
     <>
-      <div className="select-v2">
+      <div className="select-v2" onMouseLeave={onMouseLeaveContainer}>
         {title && <div className="title">{title}</div>}
         <div className="selected-label" onClick={toggleShowOptions}>
           {selLabel}
